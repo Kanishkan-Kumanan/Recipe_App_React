@@ -6,8 +6,6 @@ import {useEffect} from "react";
 
 import Recipe from "./recipe";
 
-import * as $ from "jquery";
-
 import"../public/css/style.css";
 
 import "../public/index.html";
@@ -25,10 +23,11 @@ const App = () =>{
 
   useEffect(() =>{
     getRecipes();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[query]);
 
   const getRecipes = async ()  =>{
-   const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=eeb6e2f7&app_key=52875dff1d8a34198f363076fa52ddff`);
+   const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
    const  data = await response.json();
     console.log(data.hits);
     setRecipes(data.hits);
